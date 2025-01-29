@@ -1,7 +1,7 @@
 import {Link} from "react-router";
 
 function PlaceCard({place, placeDeleted}){
-    //page reset na delete
+
     const deletePlace = async () =>{
         try{
             const result = await fetch(`http://145.24.222.144:8001/places/${place.id}`, {
@@ -31,9 +31,9 @@ function PlaceCard({place, placeDeleted}){
             </section>
             <section className="flex items-center space-x-4">
                 <Link className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                      to={`/spots/${place.id}`}>detail</Link>
+                      to={`/places/${place.id}`}>detail</Link>
                 <Link className="text-sm font-medium text-green-600 hover:text-green-800 transition-colors"
-                      to={`/spots/edit/${place.id}`}>edit</Link>
+                      to={`/places/edit/${place.id}`}>edit</Link>
                 <button className="text-sm font-medium text-red-600 hover:text-red-800 transition-colors"
                         onClick={deletePlace}>delete</button>
             </section>

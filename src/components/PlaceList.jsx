@@ -23,6 +23,10 @@ function PlaceList(){
         loadData();
     }, []);
 
+    const handlePlaceDeleted = (id) => {
+        setSandwichPlace((prevPlaces) => prevPlaces.filter((place) => place.id !== id));
+    };
+
     return(
         <main className="mx-auto max-w-screen-xl bg-blue-100">
 
@@ -30,7 +34,7 @@ function PlaceList(){
                 {SandwichPlace ? (
                         <div>
                             {SandwichPlace.map((place)=>(
-                                <PlaceCard key={place.id} place={place} spotDeleted={loadData}/>
+                                <PlaceCard key={place.id} place={place} placeDeleted={() => handlePlaceDeleted(place.id)}/>
 
                             ))}
                         </div>

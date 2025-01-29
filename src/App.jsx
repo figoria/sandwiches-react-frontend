@@ -4,9 +4,7 @@ import Home from "./Home.jsx";
 import PlaceList from "./components/PlaceList.jsx";
 import PlaceCreateForm from "./components/PlaceCreateForm.jsx";
 import PlaceDetail from "./components/PlaceDetail.jsx";
-// import SpotCreateForm from "./SpotCreateForm.jsx";
-// import SpotDetail from "./SpotDetail.jsx";
-// import EditSpot from "./EditSpot.jsx";
+import PlaceEdit from "./components/PlaceEdit.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,13 +23,13 @@ const router = createBrowserRouter([
                 element:<PlaceCreateForm/>
    },
            {
-                path:'/spots/:id',
+                path:'/places/:id',
                 element:<PlaceDetail/>
             },
-            {/*       {
-                path:'/spots/edit/:id',
-                element:<EditSpot/>
-            },*/}
+                  {
+                path:'/places/edit/:id',
+                element:<PlaceEdit/>
+            },
         ]
     }
 ])
