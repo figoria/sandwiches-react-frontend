@@ -9,6 +9,7 @@ function PlaceCreateForm(){
         review: '',
         shop: '',
         address: '',
+        imageUrl: '',
     });
 
     const handleInputChange = (e) =>{
@@ -31,9 +32,10 @@ function PlaceCreateForm(){
         const data = await result.json();
         console.log(data);
 
-        if(result.status === 201){
-            navigate(`/places/${data.id}`);
+        if(result.status === 200){
+            navigate('/places/');
         }
+
     }
 
 
@@ -70,13 +72,26 @@ function PlaceCreateForm(){
             </div>
             <div>
                 <label htmlFor="review" className="block text-gray-700 font-semibold mb-2">
-                    Review:
+                    Review (1 t/m 5):
                 </label>
                 <input
                     type="text"
                     id="review"
                     name="review"
                     value={formData.review}
+                    onChange={handleInputChange}
+                    className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                />
+            </div>
+            <div>
+                <label htmlFor="vegan" className="block text-gray-700 font-semibold mb-2">
+                    vegan (ja/nee):
+                </label>
+                <input
+                    type="text"
+                    id="vegan"
+                    name="vegan"
+                    value={formData.vegan}
                     onChange={handleInputChange}
                     className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
                 />
@@ -103,6 +118,17 @@ function PlaceCreateForm(){
                     id="address"
                     name="address"
                     value={formData.address}
+                    onChange={handleInputChange}
+                    className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                />
+            </div>
+            <div>
+                <label htmlFor="imageUrl" className="block text-gray-700 font-semibold mb-2">afbeelding URL:</label>
+                <input
+                    type="text"
+                    id="imageUrl"
+                    name="imageUrl"
+                    value={formData.imageUrl}
                     onChange={handleInputChange}
                     className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
                 />

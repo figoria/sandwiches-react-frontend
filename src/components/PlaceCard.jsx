@@ -22,6 +22,7 @@ function PlaceCard({place, placeDeleted}){
         <article className="bg-gradient-to-r from-yellow-100 via-white to-yellow-50 rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300 border border-yellow-200 mb-6">
             <section className="mb-4">
                 <h2 className="text-2xl font-semibold text-gray-800">{place.name}</h2>
+                <img src={place.imageUrl} alt={place.name} className="w-20"/>
             </section>
             <section className="mb-4">
                 <div className="space-y-2">

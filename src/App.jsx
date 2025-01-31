@@ -5,14 +5,17 @@ import PlaceList from "./components/PlaceList.jsx";
 import PlaceCreateForm from "./components/PlaceCreateForm.jsx";
 import PlaceDetail from "./components/PlaceDetail.jsx";
 import PlaceEdit from "./components/PlaceEdit.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
+import IdError from "./components/IdError.jsx";
 
 const router = createBrowserRouter([
     {
         element: <Layout/>,
+        errorElement: <ErrorPage />,
         children:[
             {
                 path:'/',
-                element:<Home/>
+                element:<Home/>,
             },
             {
                 path:'/places/',
@@ -24,11 +27,17 @@ const router = createBrowserRouter([
    },
            {
                 path:'/places/:id',
-                element:<PlaceDetail/>
+                element:<PlaceDetail/>,
             },
                   {
                 path:'/places/edit/:id',
-                element:<PlaceEdit/>
+                element:<PlaceEdit/>,
+                      errorElement:<IdError/>
+
+},
+            {
+                path:'/IdError',
+                element:<IdError/>
             },
         ]
     }

@@ -8,6 +8,7 @@ function PlaceEdit(){
         review: '',
         shop: '',
         address: '',
+        imageUrl: '',
     });
     const navigate = useNavigate()
     const params = useParams();
@@ -23,6 +24,9 @@ function PlaceEdit(){
                 const data = await response.json();
                 setFormData(data);
                 console.log(data)
+                if (response.status === 400){
+                    navigate('/IdError')
+                }
             } catch (error){
                 console.log('fout', error )
             }
@@ -63,7 +67,6 @@ function PlaceEdit(){
     }
     return(
         <>
-            <div> {params.id}</div>
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-2xl shadow-lg max-w-md mx-auto">
                 <div>
                     <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">naam:</label>
@@ -90,13 +93,26 @@ function PlaceEdit(){
                 </div>
                 <div>
                     <label htmlFor="review" className="block text-gray-700 font-semibold mb-2">
-                        Review:
+                        Review (1 t/m 5):
                     </label>
                     <input
                         type="text"
                         id="review"
                         name="review"
                         value={formData.review}
+                        onChange={handleInputChange}
+                        className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="vegan" className="block text-gray-700 font-semibold mb-2">
+                        vegan (ja/nee):
+                    </label>
+                    <input
+                        type="text"
+                        id="vegan"
+                        name="vegan"
+                        value={formData.vegan}
                         onChange={handleInputChange}
                         className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
                     />
@@ -123,6 +139,17 @@ function PlaceEdit(){
                         id="address"
                         name="address"
                         value={formData.address}
+                        onChange={handleInputChange}
+                        className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="imageUrl" className="block text-gray-700 font-semibold mb-2">afbeelding URL:</label>
+                    <input
+                        type="text"
+                        id="imageUrl"
+                        name="imageUrl"
+                        value={formData.imageUrl}
                         onChange={handleInputChange}
                         className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
                     />

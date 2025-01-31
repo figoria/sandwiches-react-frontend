@@ -1,9 +1,12 @@
-import {useParams} from "react-router";
+import {useParams, useNavigate } from "react-router";
 import {useEffect, useState} from "react";
+import IdError from "./IdError.jsx";
 
 function PlaceDetail(){
     const[sandwichSpot, setSandwichSpot] = useState(null);
     const params = useParams();
+    const navigate = useNavigate();
+
 
     async function loadSpot(){
         try{
@@ -15,10 +18,17 @@ function PlaceDetail(){
             const data = await response.json();
             setSandwichSpot(data);
             console.log(data)
+            if (response.status === 400){
+                navigate('/IdError')
+                return;
+            }
         } catch (error){
             console.log('fout', error )
         }
+
     };
+
+
 
     useEffect(() => {
         loadSpot();
@@ -30,6 +40,8 @@ function PlaceDetail(){
                 {sandwichSpot ? (
                         <div className="space-y-4">
                             <h1 className="text-3xl font-bold text-gray-800">{sandwichSpot.name}</h1>
+                            <img src={sandwichSpot.imageUrl} alt={sandwichSpot.name} className="w-20"/>
+
                             <p className="text-gray-700 text-base leading-relaxed">
                                 <span className="font-semibold">Beschrijving:</span> {sandwichSpot.description}
                             </p>
@@ -37,11 +49,16 @@ function PlaceDetail(){
                                 <span className="font-semibold">Review:</span> {sandwichSpot.review}
                             </p>
                             <p className="text-gray-700 text-base leading-relaxed">
+                                <span className="font-semibold">vegan:</span> {sandwichSpot.vegan}
+                            </p>
+                            <p className="text-gray-700 text-base leading-relaxed">
                                 <span className="font-semibold">Winkel:</span> {sandwichSpot.shop}
                             </p>
                             <p className="text-gray-700 text-base leading-relaxed">
                                 <span className="font-semibold">Adres:</span> {sandwichSpot.address}
                             </p>
+                            <div className="text-gray-700 text-base leading-relaxed"> {params.id}</div>
+
                         </div>
                     )
                     : (
